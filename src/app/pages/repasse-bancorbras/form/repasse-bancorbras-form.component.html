@@ -1,0 +1,124 @@
+<form [formGroup]="form" class="form-container">
+
+  <mat-card class="title">
+    <mat-card-title>Cadastro de Repasse Bancorbrás</mat-card-title>
+
+    <mat-card-content>
+
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>cliente</mat-label>
+          <input matInput formControlName="cliente" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contrato</mat-label>
+          <input matInput formControlName="contrato" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Venda</mat-label>
+          <input matInput formControlName="venda" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mês</mat-label>
+          <input matInput formControlName="mes" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Bem</mat-label>
+          <input matInput formControlName="bem" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+        <mat-label>Parcela</mat-label>
+        <mat-select formControlName="parcela">
+            <mat-option value="1">Parcela 13</mat-option>
+            <mat-option value="2">Parcela 24</mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Valor Base</mat-label>
+          <input
+            class="valor"
+            matInput
+            currencyMask
+            formControlName="valorBase"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Comissão GI3</mat-label>
+          <input
+            class="valor"
+            matInput
+            currencyMask
+            formControlName="comissaoGi3"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Comissão Vendedor</mat-label>
+          <input
+            class="valor"
+            matInput
+            currencyMask
+            formControlName="comissaoVendedor"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Desconto Comissão</mat-label>
+          <input
+            class="valor"
+            matInput
+            currencyMask
+            formControlName="descontoComissao"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Comissão Líquida</mat-label>
+          <input
+            class="valor"
+            matInput
+            currencyMask
+            formControlName="comissaoLiquida"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Pagamento</mat-label>
+            <mat-select formControlName="pg">
+                <mat-option value="OK">OK</mat-option>
+                <mat-option value="NO">NO</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-stroked-button type="button" (click)="voltar()">Voltar</button>
+      @if (!isViewMode && !isEditMode) {
+        <button mat-raised-button color="primary" (click)="salvar()" [disabled]="form.invalid">
+          Salvar
+        </button>
+      }
+      @if (!isViewMode && isEditMode) {
+        <button mat-raised-button color="primary" (click)="update()" [disabled]="form.invalid">
+          Atualizar
+        </button>
+      }
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>
