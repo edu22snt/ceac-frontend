@@ -1,0 +1,60 @@
+<form [formGroup]="form" class="form-container">
+
+  <mat-card class="title">
+    <mat-card-title>Cadastro de controle de acesso</mat-card-title>
+
+    <mat-card-content>
+
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número da TAG</mat-label>
+          <input matInput formControlName="tag" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número do acesso</mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Portão</mat-label>
+          <mat-select formControlName="portao">
+            <mat-option value="Bancorbras">Bancorbras</mat-option>
+            <mat-option value="HS">HS</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Portão</mat-label>
+          <mat-select formControlName="portao">
+            @for (portao of portoes; track $index) {
+              <mat-option
+                [value]="portao">
+                {{ portao.nome }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-stroked-button type="button" (click)="voltar()">Voltar</button>
+      @if (!isViewMode && !isEditMode) {
+        <button mat-raised-button color="primary" (click)="salvar()" [disabled]="form.invalid">
+          Salvar
+        </button>
+      }
+      @if (!isViewMode && isEditMode) {
+        <button mat-raised-button color="primary" (click)="update()" [disabled]="form.invalid">
+          Atualizar
+        </button>
+      }
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>

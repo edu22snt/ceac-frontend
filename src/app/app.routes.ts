@@ -23,139 +23,166 @@ export const routes: Routes = [
             .then(m => m.DashboardComponent)
       },
       {
-        path: 'contrato',
+        path: 'condominio',
         loadComponent: () =>
-          import('./pages/contrato/contrato.component')
-            .then(m => m.ContratoComponent)
+          import('./pages/condominio/condominio.component')
+            .then(m => m.CondominioComponent)
       },
       {
-        path: 'contrato-form',
+        path: 'condominio-form',
         loadComponent: () =>
-          import('./pages/contrato/form/contrato-form.component')
-            .then(m => m.ContratoFormComponent)
+          import('./pages/condominio/form/condominio-form.component')
+            .then(m => m.CondominioFormComponent)
       },
       {
-        path: 'contrato/view/:id',
+        path: 'condominio/view/:id',
         loadComponent: () =>
-          import('./pages/contrato/form/contrato-form.component')
-            .then(m => m.ContratoFormComponent)
+          import('./pages/condominio/form/condominio-form.component')
+            .then(m => m.CondominioFormComponent)
       },
       {
-        path: 'contrato/edit/:id',
+        path: 'condominio/edit/:id',
         data: {
           authorities: [Authority.ADMIN],
         },
         loadComponent: () =>
-          import('./pages/contrato/form/contrato-form.component')
-            .then(m => m.ContratoFormComponent)
+          import('./pages/condominio/form/condominio-form.component')
+            .then(m => m.CondominioFormComponent)
       },
       {
-        path: 'prestacao-servico',
+        path: 'controle-acesso',
         loadComponent: () =>
-          import('./pages/prestacao-servico/prestacao-servico.component')
-            .then(m => m.PrestacaoServicoComponent)
+          import('./pages/controle-acesso/controle-acesso.component')
+            .then(m => m.ControleAcessoComponent)
       },
       {
-        path: 'prestacao-servico-form',
+        path: 'controle-acesso-form',
         loadComponent: () =>
-          import('./pages/prestacao-servico/form/prestacao-servico-form.component')
-            .then(m => m.PrestacaoServicoFormComponent)
+          import('./pages/controle-acesso/form/controle-acesso-form.component')
+            .then(m => m.ControleAcessoFormComponent)
       },
       {
-        path: 'prestacao-servico/view/:id',
+        path: 'controle-acesso/view/:id',
         loadComponent: () =>
-          import('./pages/prestacao-servico/form/prestacao-servico-form.component')
-            .then(m => m.PrestacaoServicoFormComponent)
+          import('./pages/controle-acesso/form/controle-acesso-form.component')
+            .then(m => m.ControleAcessoFormComponent)
       },
       {
-        path: 'prestacao-servico/edit/:id',
+        path: 'controle-acesso/edit/:id',
         data: {
           authorities: [Authority.ADMIN],
         },
         loadComponent: () =>
-          import('./pages/prestacao-servico/form/prestacao-servico-form.component')
-            .then(m => m.PrestacaoServicoFormComponent)
+          import('./pages/controle-acesso/form/controle-acesso-form.component')
+            .then(m => m.ControleAcessoFormComponent)
       },
       {
-        path: 'repasse-bancorbras',
+        path: 'morador',
         loadComponent: () =>
-          import('./pages/repasse-bancorbras/repasse-bancorbras.component')
-            .then(m => m.RepasseBancorbrasComponent)
+          import('./pages/morador/morador.component')
+            .then(m => m.MoradorComponent)
       },
       {
-        path: 'repasse-bancorbras-form',
+        path: 'morador-form',
         loadComponent: () =>
-          import('./pages/repasse-bancorbras/form/repasse-bancorbras-form.component')
-            .then(m => m.RepasseBancorbrasFormComponent)
+          import('./pages/morador/form/morador-form.component')
+            .then(m => m.MoradorFormComponent)
       },
       {
-        path: 'repasse-bancorbras-form/view/:id',
+        path: 'morador-form/view/:id',
         loadComponent: () =>
-          import('./pages/repasse-bancorbras/form/repasse-bancorbras-form.component')
-            .then(m => m.RepasseBancorbrasFormComponent)
+          import('./pages/morador/form/morador-form.component')
+            .then(m => m.MoradorFormComponent)
       },
       {
-        path: 'repasse-bancorbras-form/edit/:id',
+        path: 'morador-form/edit/:id',
         data: {
           authorities: [Authority.ADMIN],
         },
         loadComponent: () =>
-          import('./pages/repasse-bancorbras/form/repasse-bancorbras-form.component')
-            .then(m => m.RepasseBancorbrasFormComponent)
+          import('./pages/morador/form/morador-form.component')
+            .then(m => m.MoradorFormComponent)
       },
       {
-        path: 'repasse-hs',
+        path: 'portao',
         loadComponent: () =>
-          import('./pages/repasse-hs/repasse-hs.component')
-            .then(m => m.RepasseHsComponent)
+          import('./pages/portao/portao.component')
+            .then(m => m.PortaoComponent)
       },
       {
-        path: 'repasse-hs-form',
+        path: 'portao-form',
         loadComponent: () =>
-          import('./pages/repasse-hs/form/repasse-hs-form.component')
-            .then(m => m.RepasseHsFormComponent)
+          import('./pages/portao/form/portao-form.component')
+            .then(m => m.PortaoFormComponent)
       },
       {
-        path: 'repasse-hs-form/view/:id',
+        path: 'portao-form/view/:id',
         loadComponent: () =>
-          import('./pages/repasse-hs/form/repasse-hs-form.component')
-            .then(m => m.RepasseHsFormComponent)
+          import('./pages/portao/form/portao-form.component')
+            .then(m => m.PortaoFormComponent)
       },
       {
-        path: 'repasse-hs-form/edit/:id',
+        path: 'portao-form/edit/:id',
         data: {
           authorities: [Authority.ADMIN],
         },
         loadComponent: () =>
-          import('./pages/repasse-hs/form/repasse-hs-form.component')
-            .then(m => m.RepasseHsFormComponent)
+          import('./pages/portao/form/portao-form.component')
+            .then(m => m.PortaoFormComponent)
       },
       {
-        path: 'vendedor',
+        path: 'unidade',
         loadComponent: () =>
-          import('./pages/vendedor/vendedor.component')
-            .then(m => m.VendedorComponent)
+          import('./pages/unidade/unidade.component')
+            .then(m => m.UnidadeComponent)
       },
       {
-        path: 'vendedor-form',
+        path: 'unidade-form',
         loadComponent: () =>
-          import('./pages/vendedor/form/vendedor-form.component')
-            .then(m => m.VendedorFormComponent)
+          import('./pages/unidade/form/unidade-form.component')
+            .then(m => m.UnidadeFormComponent)
       },
       {
-        path: 'vendedor/view/:id',
+        path: 'unidade/view/:id',
         loadComponent: () =>
-          import('./pages/vendedor/form/vendedor-form.component')
-            .then(m => m.VendedorFormComponent)
+          import('./pages/unidade/form/unidade-form.component')
+            .then(m => m.UnidadeFormComponent)
       },
       {
-        path: 'vendedor/edit/:id',
+        path: 'unidade/edit/:id',
         data: {
           authorities: [Authority.ADMIN],
         },
         loadComponent: () =>
-          import('./pages/vendedor/form/vendedor-form.component')
-            .then(m => m.VendedorFormComponent)
+          import('./pages/unidade/form/unidade-form.component')
+            .then(m => m.UnidadeFormComponent)
+      },
+      {
+        path: 'veiculo',
+        loadComponent: () =>
+          import('./pages/veiculo/veiculo.component')
+            .then(m => m.VeiculoComponent)
+      },
+      {
+        path: 'veiculo-form',
+        loadComponent: () =>
+          import('./pages/veiculo/form/veiculo-form.component')
+            .then(m => m.VeiculoFormComponent)
+      },
+      {
+        path: 'veiculo/view/:id',
+        loadComponent: () =>
+          import('./pages/veiculo/form/veiculo-form.component')
+            .then(m => m.VeiculoFormComponent)
+      },
+      {
+        path: 'veiculo/edit/:id',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
+        loadComponent: () =>
+          import('./pages/veiculo/form/veiculo-form.component')
+            .then(m => m.VeiculoFormComponent)
       },
       {
         path: 'usuario',
@@ -183,12 +210,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/usuario/form/usuario-form.component')
             .then(m => m.UsuarioFormComponent)
-      },
-      {
-        path: 'upload',
-        loadComponent: () =>
-          import('./pages/upload/upload.component')
-            .then(m => m.UploadComponent)
       },
       {
         path: '',

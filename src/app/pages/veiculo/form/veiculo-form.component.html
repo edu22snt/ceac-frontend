@@ -1,0 +1,50 @@
+<form [formGroup]="form" class="form-container">
+
+  <mat-card class="title">
+    <mat-card-title>Cadastro de veículo</mat-card-title>
+
+    <mat-card-content>
+
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <input matInput formControlName="tipo" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Modelo</mat-label>
+          <input matInput formControlName="modelo" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Cor</mat-label>
+          <input matInput formControlName="cor" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Placa</mat-label>
+          <input matInput formControlName="placa" />
+        </mat-form-field>
+
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-stroked-button type="button" (click)="voltar()">Voltar</button>
+      @if (!isViewMode && !isEditMode) {
+        <button mat-raised-button color="primary" (click)="salvar()" [disabled]="form.invalid">
+          Salvar
+        </button>
+      }
+      @if (!isViewMode && isEditMode) {
+        <button mat-raised-button color="primary" (click)="update()" [disabled]="form.invalid">
+          Atualizar
+        </button>
+      }
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>

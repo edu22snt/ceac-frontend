@@ -1,0 +1,52 @@
+<form [formGroup]="form" class="form-container">
+
+  <mat-card class="title">
+    <mat-card-title>Cadastro de unidade</mat-card-title>
+
+    <mat-card-content>
+
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Bloco</mat-label>
+          <input matInput formControlName="bloco" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apartamento</mat-label>
+          <input matInput formControlName="apartamento" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Condomínio</mat-label>
+          <mat-select formControlName="condominio">
+            @for (condominio of condominios; track $index) {
+              <mat-option
+                [value]="condominio">
+                {{ condominio.nome }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-stroked-button type="button" (click)="voltar()">Voltar</button>
+      @if (!isViewMode && !isEditMode) {
+        <button mat-raised-button color="primary" (click)="salvar()" [disabled]="form.invalid">
+          Salvar
+        </button>
+      }
+      @if (!isViewMode && isEditMode) {
+        <button mat-raised-button color="primary" (click)="update()" [disabled]="form.invalid">
+          Atualizar
+        </button>
+      }
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>
