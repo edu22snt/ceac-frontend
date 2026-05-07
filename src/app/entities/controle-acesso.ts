@@ -1,18 +1,21 @@
+import { IMorador } from "./morador";
 import { IPortao } from "./portao";
 
 export interface IControleAcesso {
-    id?: number;
+    id: number;
+    portao: IPortao;
+    morador: IMorador;
     tag?: number;
     numero?: number;
-    portao?: IPortao;
 }
 
 export class ControleAcesso implements IControleAcesso {
     constructor(
-        public id?: number,
+        public id: number,
+        public portao: IPortao,
+        public morador: IMorador,
         public tag?: number,
-        public numero?: number,
-        public portao?: IPortao,
+        public numero?: number
     ) {}
 }
 

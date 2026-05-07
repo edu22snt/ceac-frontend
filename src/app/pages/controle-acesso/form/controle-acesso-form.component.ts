@@ -13,6 +13,8 @@ import { MatSelect, MatOption } from "@angular/material/select";
 import { IControleAcesso } from '../../../entities/controle-acesso';
 import { IPortao } from '../../../entities/portao';
 import { PortaoService } from '../../../services/portao/portao.service';
+import { IMorador } from '../../../entities/morador';
+import { MoradorService } from '../../../services/morador/morador.service';
 
 @Component({
   selector: 'app-controle-acesso-form',
@@ -42,6 +44,7 @@ export class ControleAcessoFormComponent implements OnInit {
   isViewMode = false;
   isEditMode = false;
   portoes: IPortao[] = [];
+  moradores: IMorador[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -49,11 +52,12 @@ export class ControleAcessoFormComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private service: ControleAcessoService,
-    private portaoService: PortaoService
+    private portaoService: PortaoService,
+    private moradorService: MoradorService
   ) {
     this.form = this.fb.group({
       id: [''],
-      tag: ['', Validators.required],
+      tag: [''],
       numero: ['', Validators.required],
       portao: ['', Validators.required]
     });
@@ -73,6 +77,7 @@ export class ControleAcessoFormComponent implements OnInit {
     }
 
     this.loadPortoes();
+    this.loadMoradores();
   }
 
   salvar(): void {
@@ -135,7 +140,7 @@ export class ControleAcessoFormComponent implements OnInit {
   loadPortoes(): void {
     this.portaoService.findAll().subscribe({
       next: (data) => {
-        this.onSuccess(data.body);
+        this.onSuccessPortoes(data.body);
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de portão', error);
@@ -143,8 +148,23 @@ export class ControleAcessoFormComponent implements OnInit {
     });
   }
 
-  protected onSuccess(data: any): void {
+  loadMoradores(): void {
+    this.moradorService.findAll().subscribe({
+      next: (data) => {
+        this.onSuccessMoradores(data.body);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de moradores', error);
+      }
+    });
+  }
+
+  protected onSuccessPortoes(data: any): void {
     this.portoes = data.content;
+  }
+
+  protected onSuccessMoradores(data: any): void {
+    this.moradores = data.content;
   }
 
 }

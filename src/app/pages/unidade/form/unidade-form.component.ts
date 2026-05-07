@@ -12,6 +12,7 @@ import { MatSelect, MatOption } from "@angular/material/select";
 import { UnidadeService } from '../../../services/unidade/unidade.service';
 import { IUnidade } from '../../../entities/unidade';
 import { ICondominio } from '../../../entities/condominio';
+import { CondominioService } from '../../../services/condominio/condominio.service';
 
 @Component({
   selector: 'app-unidade-form',
@@ -47,7 +48,8 @@ export class UnidadeFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private service: UnidadeService
+    private service: UnidadeService,
+    private condominioService: CondominioService
     ) {
     this.form = this.fb.group({
       id: [''],
@@ -69,11 +71,16 @@ export class UnidadeFormComponent implements OnInit {
     if (this.isViewMode) {
       this.form.disable();
     }
+
+    this.loadCondominios();
   }
   
   salvar(): void {
     if (this.form.valid) {
       const unidade: IUnidade = this.form.value;
+
+      console.log('Unidade a ser salva:', unidade);
+
       this.service.create(unidade).subscribe({
         next: () => {
           this.voltar();
@@ -127,6 +134,21 @@ export class UnidadeFormComponent implements OnInit {
         this.form.patchValue(res.body);
       }
     });
+  }
+
+  loadCondominios(): void {
+    this.condominioService.findAll().subscribe({
+      next: (data) => {
+        this.onSuccessCondominios(data.body);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de condominios', error);
+      }
+    });
+  }
+
+  protected onSuccessCondominios(data: any): void {
+    this.condominios = data.content;
   }
 
 

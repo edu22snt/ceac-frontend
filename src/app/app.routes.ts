@@ -185,6 +185,33 @@ export const routes: Routes = [
             .then(m => m.VeiculoFormComponent)
       },
       {
+        path: 'visitante',
+        loadComponent: () =>
+          import('./pages/visitante/visitante.component')
+            .then(m => m.VisitanteComponent)
+      },
+      {
+        path: 'visitante-form',
+        loadComponent: () =>
+          import('./pages/visitante/form/visitante-form.component')
+            .then(m => m.VisitanteFormComponent)
+      },
+      {
+        path: 'visitante/view/:id',
+        loadComponent: () =>
+          import('./pages/visitante/form/visitante-form.component')
+            .then(m => m.VisitanteFormComponent)
+      },
+      {
+        path: 'visitante/edit/:id',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
+        loadComponent: () =>
+          import('./pages/visitante/form/visitante-form.component')
+            .then(m => m.VisitanteFormComponent)
+      },
+      {
         path: 'usuario',
         loadComponent: () =>
           import('./pages/usuario/usuario.component')

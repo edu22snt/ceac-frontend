@@ -60,14 +60,17 @@
           <input matInput formControlName="unidade" />
         </mat-form-field>
 
-
-        <!-- <mat-form-field appearance="outline">
-            <mat-label>Proprietário</mat-label>
-            <mat-select formControlName="pg">
-                <mat-option value="SIM">SIM</mat-option>
-                <mat-option value="NÃO">NÃO</mat-option>
-            </mat-select>
-        </mat-form-field> -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Unidade</mat-label>
+          <mat-select formControlName="unidade">
+            @for (unidade of unidades; track $index) {
+              <mat-option
+                [value]="unidade">
+                {{ unidade.bloco }} / {{ unidade.apartamento }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
         <section class="example-section">
           <mat-checkbox formControlName="proprietario">É proprietário?</mat-checkbox>

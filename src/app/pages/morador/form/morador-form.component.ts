@@ -1,5 +1,5 @@
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -13,6 +13,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MoradorService } from '../../../services/morador/morador.service';
 import { IMorador } from '../../../entities/morador';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { IUnidade } from '../../../entities/unidade';
+import { UnidadeService } from '../../../services/unidade/unidade.service';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-morador-form',
@@ -34,8 +37,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
-  ],
+    MatCheckboxModule,
+    MatSelect,
+    MatOption
+],
   templateUrl: './morador-form.component.html',
   styleUrl: './morador-form.component.scss'
 })
@@ -44,13 +49,15 @@ export class MoradorFormComponent implements OnInit {
     form: FormGroup;
     isViewMode = false;
     isEditMode = false;
+    unidades: IUnidade[] = [];
 
   constructor(
       private fb: FormBuilder,
       private router: Router,
       private route: ActivatedRoute,
       private snackBar: MatSnackBar,
-      private service: MoradorService
+      private service: MoradorService,
+      private unidadeService: UnidadeService
     ) {
     this.form = this.fb.group({
       id: [''],
@@ -76,6 +83,8 @@ export class MoradorFormComponent implements OnInit {
     if (this.isViewMode) {
       this.form.disable();
     }
+
+    this.loadUnidades();
   }
 
   salvar(): void {
@@ -146,6 +155,21 @@ export class MoradorFormComponent implements OnInit {
     this.form.get('telefone')?.setValue(valor, {
       emitEvent: false
     });
+  }
+
+  loadUnidades(): void {
+    this.unidadeService.findAll().subscribe({
+      next: (data) => {
+        this.onSuccessUnidades(data.body);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de moradores', error);
+      }
+    });
+  }
+
+  protected onSuccessUnidades(data: any): void {
+    this.unidades = data.content;
   }
 
 }

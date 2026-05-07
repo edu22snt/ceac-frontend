@@ -1,19 +1,24 @@
 
 export interface IVeiculo {
     id: number;
-    tipo: string;
-    modelo: string;
-    cor: string;
     placa: string;
+    modelo: string;
+    marca: string;
+    cor: string;
+    ano: number;
+    tipo: string;
 }
+
 
 export class Veiculo implements IVeiculo {
     constructor(
         public id: number,
-        public tipo: string,
-        public modelo: string,
-        public cor: string,
         public placa: string,
+        public modelo: string,
+        public marca: string,
+        public cor: string,
+        public ano: number,
+        public tipo: string,
     ) {}
 }
 

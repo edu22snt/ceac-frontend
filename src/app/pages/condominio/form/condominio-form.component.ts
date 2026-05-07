@@ -46,11 +46,8 @@ export class CondominioFormComponent implements OnInit {
     ) {
     this.form = this.fb.group({
       id: [''],
-      contrato: ['', Validators.required],
-      empresa: ['', Validators.required],
-      parcela: ['', Validators.required],
-      valor: ['', Validators.required],
-      vendedor: ['', Validators.required]
+      nome: ['', Validators.required],
+      endereco: ['', Validators.required]
     });
   }
 

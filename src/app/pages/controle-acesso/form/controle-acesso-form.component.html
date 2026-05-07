@@ -17,11 +17,15 @@
           <input matInput formControlName="numero" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Portão</mat-label>
-          <mat-select formControlName="portao">
-            <mat-option value="Bancorbras">Bancorbras</mat-option>
-            <mat-option value="HS">HS</mat-option>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Morador</mat-label>
+          <mat-select formControlName="morador">
+            @for (morador of moradores; track $index) {
+              <mat-option
+                [value]="morador">
+                {{ morador.nome }} / {{ morador.unidade.bloco }} / {{ morador.unidade.apartamento }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 

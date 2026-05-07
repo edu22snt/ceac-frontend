@@ -118,7 +118,7 @@ export class PortaoFormComponent implements OnInit {
 
   voltar(): void {
     this.form.reset();
-    this.router.navigate(['/repasse-hs']);
+    this.router.navigate(['/portao']);
   }  
 
   loadById(id: number): void {
