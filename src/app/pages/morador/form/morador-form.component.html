@@ -56,7 +56,7 @@
             @for (veiculo of veiculos; track $index) {
               <mat-option
                 [value]="veiculo">
-                {{ veiculo.placa }} - {{ veiculo.marca }} / {{ veiculo.modelo }}
+                {{ veiculo.placa }} ({{ veiculo.marca }}/{{ veiculo.modelo }})
               </mat-option>
             }
           </mat-select>
@@ -68,7 +68,7 @@
             @for (unidade of unidades; track $index) {
               <mat-option
                 [value]="unidade">
-                {{ unidade.bloco }} / {{ unidade.apartamento }}
+                Bloco: {{ unidade.bloco }} - Apartamento: {{ unidade.apartamento }}
               </mat-option>
             }
           </mat-select>

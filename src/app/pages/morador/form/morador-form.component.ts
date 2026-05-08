@@ -168,9 +168,9 @@ export class MoradorFormComponent implements OnInit {
   }
 
   loadUnidades(): void {
-    this.unidadeService.findAll().subscribe({
+    this.unidadeService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessUnidades(data.body);
+        this.unidades = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de moradores', error);
@@ -178,14 +178,10 @@ export class MoradorFormComponent implements OnInit {
     });
   }
 
-  protected onSuccessUnidades(data: any): void {
-    this.unidades = data.content;
-  }
-
   loadVeiculos(): void {
-    this.veiculoService.findAll().subscribe({
+    this.veiculoService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessVeiculos(data.body);
+        this.veiculos = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de veículos', error);
@@ -193,23 +189,15 @@ export class MoradorFormComponent implements OnInit {
     });
   }
 
-  protected onSuccessVeiculos(data: any): void {
-    this.veiculos = data.content;
-  }
-
   loadUsuarios(): void {
-    this.usuarioService.findAll().subscribe({
+    this.usuarioService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessUsuarios(data.body);
+        this.usuarios = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de usuários', error);
       }
     });
-  }
-
-  protected onSuccessUsuarios(data: any): void {
-    this.usuarios = data.content;
   }
 
 }

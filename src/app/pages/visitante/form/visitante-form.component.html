@@ -33,13 +33,18 @@
             }
         </mat-form-field>
 
+        <mat-form-field appearance="outline">
+          <mat-label>Documento</mat-label>
+          <input matInput formControlName="documento" />
+        </mat-form-field>
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Veículo</mat-label>
           <mat-select formControlName="veiculo">
             @for (veiculo of veiculos; track $index) {
               <mat-option
                 [value]="veiculo">
-                {{ veiculo.placa }}
+                {{ veiculo.placa }} ({{ veiculo.marca }}/{{ veiculo.modelo }})
               </mat-option>
             }
           </mat-select>
@@ -51,7 +56,7 @@
             @for (unidade of unidades; track $index) {
               <mat-option
                 [value]="unidade">
-                {{ unidade.bloco }} + " - " + {{ unidade.apartamento }} 
+                Bloco: {{ unidade.bloco }} - Apartamento: {{ unidade.apartamento }}
               </mat-option>
             }
           </mat-select>

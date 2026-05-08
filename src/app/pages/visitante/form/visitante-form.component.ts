@@ -15,6 +15,9 @@ import { VisitanteService } from '../../../services/visitante/visitante.service'
 import { IVisitante } from '../../../entities/visitante';
 import { IVeiculo } from '../../../entities/veiculo';
 import { IUnidade } from '../../../entities/unidade';
+import { MatSelect } from '@angular/material/select';
+import { UnidadeService } from '../../../services/unidade/unidade.service';
+import { VeiculoService } from '../../../services/veiculo/veiculo.service';
 
 @Component({
   selector: 'app-visitante-form',
@@ -37,6 +40,7 @@ import { IUnidade } from '../../../entities/unidade';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatSelect,
     MatOption
 ],
   templateUrl: './visitante-form.component.html',
@@ -55,7 +59,9 @@ export class VisitanteFormComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute,
       private snackBar: MatSnackBar,
-      private service: VisitanteService
+      private service: VisitanteService,
+      private unidadeService: UnidadeService,
+      private veiculoService: VeiculoService
     ) {
     this.form = this.fb.group({
       id: [''],
@@ -81,6 +87,8 @@ export class VisitanteFormComponent implements OnInit {
     if (this.isViewMode) {
       this.form.disable();
     }
+    this.loadUnidades();
+    this.loadVeiculos();
   }
 
   salvar(): void {
@@ -151,6 +159,36 @@ export class VisitanteFormComponent implements OnInit {
     this.form.get('telefone')?.setValue(valor, {
       emitEvent: false
     });
+  }
+
+  loadUnidades(): void {
+    this.unidadeService.findAllNotPage().subscribe({
+      next: (data) => {
+        this.onSuccessUnidades(data);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de unidades', error);
+      }
+    });
+  }
+
+  protected onSuccessUnidades(data: any): void {
+    this.unidades = data;
+  }
+
+  loadVeiculos(): void {
+    this.veiculoService.findAllNotPage().subscribe({
+      next: (data) => {
+        this.onSuccessVeiculos(data);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de veículos', error);
+      }
+    });
+  }
+
+  protected onSuccessVeiculos(data: any): void {
+    this.veiculos = data;
   }
 
 }

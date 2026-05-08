@@ -36,6 +36,10 @@ export class CondominioService {
     );
   }
 
+  findAllNotPage(): Observable<ICondominio[]> {
+    return this.http.get<ICondominio[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+  }
+
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<ICondominio[]>(`${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
