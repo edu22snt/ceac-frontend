@@ -39,9 +39,10 @@ export class VeiculoComponent implements OnInit {
 
   displayedColumns: string[] = [
     'tipo',
-    'modelo',
+    'marca',
     'cor',
     'placa',
+    'ano',
     'acoes'
   ];
 

@@ -6,25 +6,123 @@
     <mat-card-content>
 
       <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Placa</mat-label>
+          <input
+            matInput
+            formControlName="placa"
+            maxlength="8"
+            (input)="formatarPlaca($event)" />
+        </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Tipo</mat-label>
-          <input matInput formControlName="tipo" />
+          <mat-select formControlName="tipo">
+            <mat-option value="Carro">Carro</mat-option>
+            <mat-option value="Moto">Moto</mat-option>
+            <mat-option value="Caminhonete">Caminhonete</mat-option>
+          </mat-select>
         </mat-form-field>
+
+        <!-- @if (form.get('tipo')?.value === 'Carro') {
+          <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <mat-select formControlName="modelo">
+              <mat-option value="Hatche">Hatche (Compacto)</mat-option>
+              <mat-option value="Sedã">Sedã</mat-option>
+              <mat-option value="SUV e Crossover">SUV e Crossover</mat-option>
+            </mat-select>
+          </mat-form-field>
+        }
+
+        @if (form.get('tipo')?.value === 'Moto') {
+          <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <mat-select formControlName="modelo">
+              <mat-option value="Scooters/CUB">Scooters/CUB</mat-option>
+              <mat-option value="Street/Naked">Street/Naked</mat-option>
+              <mat-option value="Trail/Big Trail">Trail/Big Trail</mat-option>
+              <mat-option value="Custom/Touring">Custom/Touring</mat-option>
+            </mat-select>
+          </mat-form-field>
+        }
+
+        @if (form.get('tipo')?.value === 'Caminhonete') {
+          <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <mat-select formControlName="modelo">
+              <mat-option value="Picapes Pequenas e Intermediárias">Picape Pequena</mat-option>
+              <mat-option value="Picapes Médias">Picape Média</mat-option>
+              <mat-option value="Picapes Grandes">Picape Grande</mat-option>
+            </mat-select>
+          </mat-form-field>
+        } -->
 
         <mat-form-field appearance="outline">
-          <mat-label>Modelo</mat-label>
-          <input matInput formControlName="modelo" />
+          <mat-label>Marca</mat-label>
+          <mat-select formControlName="marca">
+            <mat-option value="">Selecione</mat-option>
+            <mat-option value="Aston Martin">Aston Martin</mat-option>
+            <mat-option value="Audi">Audi</mat-option>
+            <mat-option value="Bentley">Bentley</mat-option>
+            <mat-option value="BMW">BMW</mat-option>
+            <mat-option value="Bugatti">Bugatti</mat-option>
+            <mat-option value="BYD">BYD</mat-option>
+            <mat-option value="Caoa Chery">Caoa Chery</mat-option>
+            <mat-option value="Chevrolet (GM)">Chevrolet (GM)</mat-option>
+            <mat-option value="Citroën">Citroën</mat-option>
+            <mat-option value="Ferrari">Ferrari</mat-option>
+            <mat-option value="Fiat">Fiat</mat-option>
+            <mat-option value="Ford">Ford</mat-option>
+            <mat-option value="GWM">GWM</mat-option>
+            <mat-option value="Honda">Honda</mat-option>
+            <mat-option value="Hyundai">Hyundai</mat-option>
+            <mat-option value="Jaguar">Jaguar</mat-option>
+            <mat-option value="Jeep">Jeep</mat-option>
+            <mat-option value="Lamborghini">Lamborghini</mat-option>
+            <mat-option value="Land Rover">Land Rover</mat-option>
+            <mat-option value="Lexus">Lexus</mat-option>
+            <mat-option value="Maserati">Maserati</mat-option>
+            <mat-option value="Mercedes-Benz">Mercedes-Benz</mat-option>
+            <mat-option value="Nissan">Nissan</mat-option>
+            <mat-option value="Peugeot">Peugeot</mat-option>
+            <mat-option value="Porsche">Porsche</mat-option>
+            <mat-option value="Renault">Renault</mat-option>
+            <mat-option value="Rolls-Royce">Rolls-Royce</mat-option>
+            <mat-option value="Toyota">Toyota</mat-option>
+            <mat-option value="Volkswagen">Volkswagen</mat-option>
+            <mat-option value="Volvo">Volvo</mat-option>
+          </mat-select>
         </mat-form-field>
 
+        @if (form.get('marca')?.value !== '') {
+          <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo" />
+          </mat-form-field>
+        }
         <mat-form-field appearance="outline">
           <mat-label>Cor</mat-label>
-          <input matInput formControlName="cor" />
+          <mat-select formControlName="cor">
+            <mat-option value="Branca"><span class="cor-circle branca"></span>Branca</mat-option>
+            <mat-option value="Preta"><span class="cor-circle preta"></span>Preta</mat-option>
+            <mat-option value="Prata"><span class="cor-circle prata"></span>Prata</mat-option>
+            <mat-option value="Cinza"><span class="cor-circle cinza"></span>Cinza</mat-option>
+            <mat-option value="Vermelha"><span class="cor-circle vermelha"></span>Vermelha</mat-option>
+            <mat-option value="Azul"><span class="cor-circle azul"></span>Azul</mat-option>
+            <mat-option value="Verde"><span class="cor-circle verde"></span>Verde</mat-option>
+            <mat-option value="Amarela"><span class="cor-circle amarela"></span>Amarela</mat-option>
+            <mat-option value="Roxo"><span class="cor-circle roxa"></span>Roxo</mat-option>
+            <mat-option value="Rosa"><span class="cor-circle rosa"></span>Rosa</mat-option>
+            <mat-option value="Laranja"><span class="cor-circle laranja"></span>Laranja</mat-option>
+            <mat-option value="Marrom"><span class="cor-circle marrom"></span>Marrom</mat-option>
+            <mat-option value="Dourada"><span class="cor-circle dourada"></span>Dourada</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Placa</mat-label>
-          <input matInput formControlName="placa" />
+          <mat-label>Ano</mat-label>
+          <input matInput formControlName="ano" />
         </mat-form-field>
 
       </div>

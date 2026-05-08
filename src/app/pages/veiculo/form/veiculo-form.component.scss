@@ -28,3 +28,65 @@ mat-form-field {
 .valor {
   text-align: left !important;
 }
+
+.cor-circle {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+}
+
+.branca {
+  background-color: white;
+}
+
+.preta {
+  background-color: black;
+}
+
+.prata {
+  background-color: silver;
+}
+
+.cinza {
+  background-color: gray;
+}
+
+.vermelha {
+  background-color: red;
+}
+
+.azul {
+  background-color: blue;
+}
+
+.verde {
+  background-color: green;
+}
+
+.amarela {
+  background-color: yellow;
+}
+
+.roxa {
+  background-color: purple;
+}
+
+.rosa {
+  background-color: pink;
+}
+
+.laranja {
+  background-color: orange;
+}
+
+.marrom {
+  background-color: brown;
+}
+
+.dourada {
+  background-color: gold;
+}

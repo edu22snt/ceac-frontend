@@ -16,6 +16,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { IUnidade } from '../../../entities/unidade';
 import { UnidadeService } from '../../../services/unidade/unidade.service';
 import { MatSelect } from '@angular/material/select';
+import { IVeiculo } from '../../../entities/veiculo';
+import { VeiculoService } from '../../../services/veiculo/veiculo.service';
 
 @Component({
   selector: 'app-morador-form',
@@ -50,6 +52,7 @@ export class MoradorFormComponent implements OnInit {
     isViewMode = false;
     isEditMode = false;
     unidades: IUnidade[] = [];
+    veiculos: IVeiculo[] = [];
 
   constructor(
       private fb: FormBuilder,
@@ -57,14 +60,15 @@ export class MoradorFormComponent implements OnInit {
       private route: ActivatedRoute,
       private snackBar: MatSnackBar,
       private service: MoradorService,
-      private unidadeService: UnidadeService
+      private unidadeService: UnidadeService,
+      private veiculoService: VeiculoService
     ) {
     this.form = this.fb.group({
       id: [''],
       nome: ['', Validators.required],
       telefone: ['', Validators.required],
-      email: ['', Validators.required],
-      veiculo: ['', Validators.required],
+      email: [''],
+      veiculo: [''],
       unidade: ['', Validators.required],
       usuario: ['', Validators.required],
       proprietario: ['', Validators.required],
@@ -170,6 +174,21 @@ export class MoradorFormComponent implements OnInit {
 
   protected onSuccessUnidades(data: any): void {
     this.unidades = data.content;
+  }
+
+  loadVeiculos(): void {
+    this.veiculoService.findAll().subscribe({
+      next: (data) => {
+        this.onSuccessVeiculos(data.body);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de veículos', error);
+      }
+    });
+  }
+
+  protected onSuccessVeiculos(data: any): void {
+    this.veiculos = data.content;
   }
 
 }

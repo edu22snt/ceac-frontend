@@ -10,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VeiculoService } from '../../../services/veiculo/veiculo.service';
 import { IVeiculo } from '../../../entities/veiculo';
+import { MatNativeDateModule, MatOption } from "@angular/material/core";
+import { MatSelect } from "@angular/material/select";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-veiculo-form',
@@ -26,7 +29,11 @@ import { IVeiculo } from '../../../entities/veiculo';
     MatCard,
     ReactiveFormsModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatOption,
+    MatSelect,
+    MatDatepickerModule,
+    MatNativeDateModule,
 ],
   templateUrl: './veiculo-form.component.html',
   styleUrl: './veiculo-form.component.scss'
@@ -46,10 +53,19 @@ export class VeiculoFormComponent implements OnInit {
     ) {
     this.form = this.fb.group({
       id: [''],
-      tipo: ['', Validators.required],
-      modelo: ['', Validators.required],
-      cor: ['', Validators.required],
-      placa: ['', Validators.required],
+      tipo: [''],
+      modelo: [''],
+      marca: [''],
+      cor: [''],
+      ano: [''],
+      placa: ['', 
+        [
+          Validators.minLength(7),
+          Validators.maxLength(8),
+          Validators.required,
+          Validators.pattern(/^[A-Z]{3}-?[0-9][A-Z0-9][0-9]{2}$/)
+        ]
+      ]
     });
   }
 
@@ -122,6 +138,44 @@ export class VeiculoFormComponent implements OnInit {
       if (res.body) {
         this.form.patchValue(res.body);
       }
+    });
+  }
+
+  formatarAno(event: any): void {
+    let valor = event.target.value.replace(/\D/g, '');
+
+    if (valor.length > 4) {
+      valor = valor.substring(0, 4);
+    }
+
+    event.target.value = valor;
+    this.form.get('ano')?.setValue(valor, { emitEvent: false });
+  }
+
+  formatarPlaca(event: any): void {
+    let valor = event.target.value
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, '');
+
+    if (valor.length <= 3) {
+      event.target.value = valor;
+      this.form.get('placa')?.setValue(valor, { emitEvent: false });
+      return;
+    }
+
+    if (/^[A-Z]{3}[0-9]/.test(valor)) {
+      valor =
+        valor.substring(0, 3) +
+        '-' +
+        valor.substring(3, 7);
+    }
+
+    valor = valor.substring(0, 8);
+
+    event.target.value = valor;
+
+    this.form.get('placa')?.setValue(valor, {
+      emitEvent: false
     });
   }
 

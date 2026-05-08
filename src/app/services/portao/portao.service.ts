@@ -20,7 +20,7 @@ export class PortaoService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/morador');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/portao');
   }
 
   create(contrato: IPortao): Observable<EntityResponseType> {
