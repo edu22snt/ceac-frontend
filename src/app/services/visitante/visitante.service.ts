@@ -38,8 +38,11 @@ export class VisitanteService {
 
   findAllNotPage(): Observable<IVisitante[]> {
     return this.http.get<IVisitante[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
-  } 
+  }
 
+  recuperarListaVisitantesDiario(): Observable<IVisitante[]> {
+    return this.http.get<IVisitante[]>(`${this.domain}${this.resourceUrl}/recuperarListaVisitantesDiario`);
+  } 
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<IVisitante[]>(
