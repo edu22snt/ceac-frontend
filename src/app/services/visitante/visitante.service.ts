@@ -28,7 +28,7 @@ export class VisitanteService {
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IVisitante>(`${this.domain}${this.resourceUrl}/visitante/${id}`, {observe: 'response'});
+    return this.http.get<IVisitante>(`${this.domain}${this.resourceUrl}/findById/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {

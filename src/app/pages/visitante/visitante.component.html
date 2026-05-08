@@ -60,7 +60,7 @@
 
     <ng-container matColumnDef="documento">
       <th mat-header-cell *matHeaderCellDef> Documento </th>
-      <td mat-cell *matCellDef="let element"> {{ element.documento }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.tipoDocumento }} - {{ element.documento }} </td>
     </ng-container>
 
     <ng-container matColumnDef="telefone">
@@ -70,12 +70,12 @@
 
     <ng-container matColumnDef="unidade">
       <th mat-header-cell *matHeaderCellDef> Unidade </th>
-      <td mat-cell *matCellDef="let element"> {{ element.unidade}} </td>
+      <td mat-cell *matCellDef="let element"> Bloco: {{ element.unidade.bloco }} / Apartamento: {{ element.unidade.apartamento }} </td>
     </ng-container>
 
     <ng-container matColumnDef="veiculo">
       <th mat-header-cell *matHeaderCellDef> Veiculo </th>
-      <td mat-cell *matCellDef="let element"> {{ element.veiculo}} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.veiculo.placa }} ({{ element.veiculo.marca }}/{{ element.veiculo.modelo }}) </td>
     </ng-container>
 
     <ng-container matColumnDef="dataEntrada">
