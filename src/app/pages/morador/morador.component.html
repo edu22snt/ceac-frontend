@@ -70,22 +70,22 @@
 
     <ng-container matColumnDef="veiculo">
       <th mat-header-cell *matHeaderCellDef> Veiculo </th>
-      <td mat-cell *matCellDef="let element"> {{ element.veiculo}} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.veiculo.placa }} </td>
     </ng-container>
 
     <ng-container matColumnDef="unidade">
       <th mat-header-cell *matHeaderCellDef> Unidade </th>
-      <td mat-cell *matCellDef="let element"> {{ element.unidade }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.unidade.bloco }} / {{ element.unidade.apartamento }} </td>
     </ng-container>
 
     <ng-container matColumnDef="usuario">
       <th mat-header-cell *matHeaderCellDef> Usuario </th>
-      <td mat-cell *matCellDef="let element"> {{ element.usuario }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.usuario.username }} </td>
     </ng-container>
 
     <ng-container matColumnDef="proprietario">
       <th mat-header-cell *matHeaderCellDef> Proprietário </th>
-      <td mat-cell *matCellDef="let element"> {{ element.proprietario | currency:'BRL' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.proprietario === true ? 'Sim' : 'Não' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes">

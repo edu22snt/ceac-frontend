@@ -18,6 +18,8 @@ import { UnidadeService } from '../../../services/unidade/unidade.service';
 import { MatSelect } from '@angular/material/select';
 import { IVeiculo } from '../../../entities/veiculo';
 import { VeiculoService } from '../../../services/veiculo/veiculo.service';
+import { IUsuario } from '../../../entities/usuario';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-morador-form',
@@ -53,6 +55,7 @@ export class MoradorFormComponent implements OnInit {
     isEditMode = false;
     unidades: IUnidade[] = [];
     veiculos: IVeiculo[] = [];
+    usuarios: IUsuario[] = [];
 
   constructor(
       private fb: FormBuilder,
@@ -61,7 +64,8 @@ export class MoradorFormComponent implements OnInit {
       private snackBar: MatSnackBar,
       private service: MoradorService,
       private unidadeService: UnidadeService,
-      private veiculoService: VeiculoService
+      private veiculoService: VeiculoService,
+      private usuarioService: UsuarioService
     ) {
     this.form = this.fb.group({
       id: [''],
@@ -89,6 +93,8 @@ export class MoradorFormComponent implements OnInit {
     }
 
     this.loadUnidades();
+    this.loadVeiculos();
+    this.loadUsuarios();
   }
 
   salvar(): void {
@@ -189,6 +195,21 @@ export class MoradorFormComponent implements OnInit {
 
   protected onSuccessVeiculos(data: any): void {
     this.veiculos = data.content;
+  }
+
+  loadUsuarios(): void {
+    this.usuarioService.findAll().subscribe({
+      next: (data) => {
+        this.onSuccessUsuarios(data.body);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar a lista de usuários', error);
+      }
+    });
+  }
+
+  protected onSuccessUsuarios(data: any): void {
+    this.usuarios = data.content;
   }
 
 }
