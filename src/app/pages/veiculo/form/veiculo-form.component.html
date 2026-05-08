@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="form-container">
 
   <mat-card class="title">
-    <mat-card-title>Cadastro de veículo</mat-card-title>
+    <mat-card-title>Cadastrar veículo</mat-card-title>
 
     <mat-card-content>
 
@@ -23,40 +23,6 @@
             <mat-option value="Caminhonete">Caminhonete</mat-option>
           </mat-select>
         </mat-form-field>
-
-        <!-- @if (form.get('tipo')?.value === 'Carro') {
-          <mat-form-field appearance="outline">
-            <mat-label>Modelo</mat-label>
-            <mat-select formControlName="modelo">
-              <mat-option value="Hatche">Hatche (Compacto)</mat-option>
-              <mat-option value="Sedã">Sedã</mat-option>
-              <mat-option value="SUV e Crossover">SUV e Crossover</mat-option>
-            </mat-select>
-          </mat-form-field>
-        }
-
-        @if (form.get('tipo')?.value === 'Moto') {
-          <mat-form-field appearance="outline">
-            <mat-label>Modelo</mat-label>
-            <mat-select formControlName="modelo">
-              <mat-option value="Scooters/CUB">Scooters/CUB</mat-option>
-              <mat-option value="Street/Naked">Street/Naked</mat-option>
-              <mat-option value="Trail/Big Trail">Trail/Big Trail</mat-option>
-              <mat-option value="Custom/Touring">Custom/Touring</mat-option>
-            </mat-select>
-          </mat-form-field>
-        }
-
-        @if (form.get('tipo')?.value === 'Caminhonete') {
-          <mat-form-field appearance="outline">
-            <mat-label>Modelo</mat-label>
-            <mat-select formControlName="modelo">
-              <mat-option value="Picapes Pequenas e Intermediárias">Picape Pequena</mat-option>
-              <mat-option value="Picapes Médias">Picape Média</mat-option>
-              <mat-option value="Picapes Grandes">Picape Grande</mat-option>
-            </mat-select>
-          </mat-form-field>
-        } -->
 
         <mat-form-field appearance="outline">
           <mat-label>Marca</mat-label>
