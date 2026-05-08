@@ -23,7 +23,7 @@
             @for (morador of moradores; track $index) {
               <mat-option
                 [value]="morador">
-                {{ morador.nome }} / {{ morador.unidade.bloco }} / {{ morador.unidade.apartamento }}
+                {{ morador.nome }} (Bloco: {{ morador.unidade.bloco }} - Apartamento: {{ morador.unidade.apartamento }})
               </mat-option>
             }
           </mat-select>

@@ -34,6 +34,16 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+          <mat-label>Tipo de documento</mat-label>
+          <mat-select formControlName="tipoDocumento">
+            <mat-option value="RG">RG</mat-option>
+            <mat-option value="CPF">CPF</mat-option>
+            <mat-option value="CNH">CNH</mat-option>
+            <mat-option value="RNE">RNE</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
           <mat-label>Documento</mat-label>
           <input matInput formControlName="documento" />
         </mat-form-field>

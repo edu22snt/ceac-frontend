@@ -66,12 +66,12 @@ export class VisitanteFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [''],
       nome: ['', Validators.required],
+      tipoDocumento: ['', Validators.required],
       documento: ['', Validators.required],
       telefone: ['', Validators.required],
       unidade: ['', Validators.required],
       veiculo: [''],
       dataEntrada: [''],
-      dataSaida: [''],
     });
   }
 
@@ -164,7 +164,7 @@ export class VisitanteFormComponent implements OnInit {
   loadUnidades(): void {
     this.unidadeService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessUnidades(data);
+        this.unidades = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de unidades', error);
@@ -172,23 +172,15 @@ export class VisitanteFormComponent implements OnInit {
     });
   }
 
-  protected onSuccessUnidades(data: any): void {
-    this.unidades = data;
-  }
-
   loadVeiculos(): void {
     this.veiculoService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessVeiculos(data);
+        this.veiculos = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de veículos', error);
       }
     });
-  }
-
-  protected onSuccessVeiculos(data: any): void {
-    this.veiculos = data;
   }
 
 }

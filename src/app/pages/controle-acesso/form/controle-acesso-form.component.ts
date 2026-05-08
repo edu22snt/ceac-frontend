@@ -138,9 +138,9 @@ export class ControleAcessoFormComponent implements OnInit {
   }
 
   loadPortoes(): void {
-    this.portaoService.findAll().subscribe({
+    this.portaoService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessPortoes(data.body);
+        this.portoes = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de portão', error);
@@ -149,22 +149,14 @@ export class ControleAcessoFormComponent implements OnInit {
   }
 
   loadMoradores(): void {
-    this.moradorService.findAll().subscribe({
+    this.moradorService.findAllNotPage().subscribe({
       next: (data) => {
-        this.onSuccessMoradores(data.body);
+        this.moradores = data;
       },
       error: (error) => {
         console.error('Erro ao carregar a lista de moradores', error);
       }
     });
-  }
-
-  protected onSuccessPortoes(data: any): void {
-    this.portoes = data.content;
-  }
-
-  protected onSuccessMoradores(data: any): void {
-    this.moradores = data.content;
   }
 
 }
