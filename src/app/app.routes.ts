@@ -212,6 +212,33 @@ export const routes: Routes = [
             .then(m => m.VisitanteFormComponent)
       },
       {
+        path: 'mudanca',
+        loadComponent: () =>
+          import('./pages/mudanca/mudanca.component')
+            .then(m => m.MudancaComponent)
+      },
+      {
+        path: 'mudanca-form',
+        loadComponent: () =>
+          import('./pages/mudanca/form/mudanca-form.component')
+            .then(m => m.MudancaFormComponent)
+      },
+      {
+        path: 'mudanca/view/:id',
+        loadComponent: () =>
+          import('./pages/mudanca/form/mudanca-form.component')
+            .then(m => m.MudancaFormComponent)
+      },
+      {
+        path: 'mudanca/edit/:id',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
+        loadComponent: () =>
+          import('./pages/mudanca/form/mudanca-form.component')
+            .then(m => m.MudancaFormComponent)
+      },
+      {
         path: 'usuario',
         loadComponent: () =>
           import('./pages/usuario/usuario.component')
