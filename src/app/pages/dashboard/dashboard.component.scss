@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+td {
+  white-space: nowrap;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-field {
+  width: 350px;
+}
+
+.espacamento {
+  margin-top: 20px;
+}
+

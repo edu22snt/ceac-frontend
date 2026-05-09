@@ -1,11 +1,11 @@
 <div class="header">
   <div>
-    <h1>Visitantes de hoje ({{ visitantes.length }})</h1>
+    <h1>Visitantes de hoje ({{ totalElementsVisitante }})</h1>
   </div>
 </div>
 
-<div id="relatorio">
-  <table mat-table [dataSource]="visitantes" class="mat-elevation-z8 full-width">
+<div>
+  <table mat-table [dataSource]="dataSourceVisitantes" class="mat-elevation-z8 full-width">
 
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -26,19 +26,30 @@
     <tr mat-row *matRowDef="let row; columns: displayedVisitantesColumns;"></tr>
   </table>
 </div>
+<mat-paginator
+  [length]="totalElementsVisitante"
+  [pageSize]="pageSizeVisitante"
+  [pageSizeOptions]="[5, 10, 20]"
+  (page)="onPageChangeVisitante($event)">
+</mat-paginator>
 
-<div class="header">
+<div class="header espacamento">
   <div>
-    <h1>Mudanças agendadas ({{ mudancas.length }})</h1>
+    <h1>Mudanças agendadas ({{ totalElementsMudanca }})</h1>
   </div>
 </div>
 
-<div id="relatorio">
-  <table mat-table [dataSource]="mudancas" class="mat-elevation-z8 full-width">
+<div>
+  <table mat-table [dataSource]="dataSourceMudancas" class="mat-elevation-z8 full-width">
 
     <ng-container matColumnDef="Morador">
       <th mat-header-cell *matHeaderCellDef> Morador </th>
       <td mat-cell *matCellDef="let element"> {{ element.morador.nome }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unidade">
+      <th mat-header-cell *matHeaderCellDef> Unidade </th>
+      <td mat-cell *matCellDef="let element"> Bloco: {{ element.morador.unidade.bloco }} - Apartamento: {{ element.morador.unidade.apartamento }} </td>
     </ng-container>
 
     <ng-container matColumnDef="tipo">
@@ -55,3 +66,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedMudancasColumns;"></tr>
   </table>
 </div>
+<mat-paginator
+  [length]="totalElementsMudanca"
+  [pageSize]="pageSizeMudanca"
+  [pageSizeOptions]="[5, 10, 20]"
+  (page)="onPageChangeMudanca($event)">
+</mat-paginator>
