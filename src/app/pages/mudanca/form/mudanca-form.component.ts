@@ -66,6 +66,7 @@ export class MudancaFormComponent implements OnInit {
       morador: ['', Validators.required],
       tipo: ['', Validators.required],
       data: [''],
+      hora: ['']
     });
   }
 
@@ -86,8 +87,7 @@ export class MudancaFormComponent implements OnInit {
 
   salvar(): void {
     if (this.form.valid) {
-      const mudanca: IMudanca = this.form.value;
-      this.service.create(mudanca).subscribe({
+      this.service.create(this.configurarDataHora()).subscribe({
         next: () => {
         this.voltar();
         this.snackBar.open('Salvo com sucesso!', 'Fechar', {
@@ -104,6 +104,14 @@ export class MudancaFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  configurarDataHora(): IMudanca {
+      const data = this.form.get('data')?.value;
+      const hora = this.form.get('hora')?.value;
+      const dataFormatada =`${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, '0')}-${String(data.getDate()).padStart(2, '0')}T${hora}:00`;
+      const mudanca: IMudanca = { ...this.form.value, data: dataFormatada };
+      return mudanca;
   }
 
   update(): void {

@@ -39,8 +39,10 @@ export class MudancaComponent implements OnInit {
 
   displayedColumns: string[] = [
     'morador',
+    'telefone',
     'tipo',
     'data',
+    'hora',
     'acoes'
   ];
 
