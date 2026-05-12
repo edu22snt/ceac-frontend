@@ -3,46 +3,50 @@
   <mat-sidenav mode="side" opened class="sidenav">
     <h3 class="logo">CEAC - Condominial</h3>
 
-    <button mat-button routerLink="/principal">
-      <mat-icon>home</mat-icon>
-      Principal
-    </button>
-    <button mat-button routerLink="/morador">
-      <mat-icon>person_outline</mat-icon>
-      Morador
-    </button>
-    <button mat-button routerLink="/visitante">
-      <mat-icon>person_outline</mat-icon>
-      Visitante
-    </button>
-    <button mat-button routerLink="/mudanca">
-      <mat-icon>swap_horiz</mat-icon>
-      Mudança
-    </button>
-    <button mat-button routerLink="/veiculo">
-      <mat-icon>directions_car</mat-icon>
-      Veículo
-    </button>
-    <button mat-button routerLink="/controle-acesso">
-      <mat-icon>lock</mat-icon>
-      Controle de acesso
-    </button>
-    <button mat-button routerLink="/usuario">
-      <mat-icon>person_outline</mat-icon>
-      Usuários
-    </button>
-    <button mat-button routerLink="/portao">
-      <mat-icon>meeting_room</mat-icon>
-      Portão
-    </button>
-    <button mat-button routerLink="/unidade">
-      <mat-icon>store</mat-icon>
-      Unidade
-    </button>
-    <button mat-button routerLink="/condominio">
-      <mat-icon>location_city</mat-icon>
-      Condomínio
-    </button>
+    @if (isAdmin || isPortaria) {
+      <button mat-button routerLink="/principal">
+        <mat-icon>home</mat-icon>
+        Principal
+      </button>
+      <button mat-button routerLink="/morador">
+        <mat-icon>person_outline</mat-icon>
+        Morador
+      </button>
+      <button mat-button routerLink="/visitante">
+        <mat-icon>person_outline</mat-icon>
+        Visitante
+      </button>
+      <button mat-button routerLink="/mudanca">
+        <mat-icon>swap_horiz</mat-icon>
+        Mudança
+      </button>
+      <button mat-button routerLink="/veiculo">
+        <mat-icon>directions_car</mat-icon>
+        Veículo
+      </button>
+      <button mat-button routerLink="/controle-acesso">
+        <mat-icon>lock</mat-icon>
+        Controle de acesso
+      </button>
+    }
+    @if (isAdmin) {
+      <button mat-button routerLink="/usuario">
+        <mat-icon>person_outline</mat-icon>
+        Usuários
+      </button>
+      <button mat-button routerLink="/portao">
+        <mat-icon>meeting_room</mat-icon>
+        Portão
+      </button>
+      <button mat-button routerLink="/unidade">
+        <mat-icon>store</mat-icon>
+        Unidade
+      </button>
+      <button mat-button routerLink="/condominio">
+        <mat-icon>location_city</mat-icon>
+        Condomínio
+      </button>
+    }
   </mat-sidenav>
 
   <mat-sidenav-content>

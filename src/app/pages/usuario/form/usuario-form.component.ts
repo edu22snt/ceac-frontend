@@ -43,7 +43,8 @@ export class UsuarioFormComponent implements OnInit {
   rolesList: { tipo: string; nome: string }[] = 
     [
       { tipo: 'ROLE_ADMIN', nome: 'Administrador' },
-      { tipo: 'ROLE_USER', nome: 'Usuário' }
+      { tipo: 'ROLE_USER', nome: 'Usuário' },
+      { tipo: 'ROLE_PORTARIA', nome: 'Portaria' }
     ];
   form: FormGroup;
   isViewMode = false;
