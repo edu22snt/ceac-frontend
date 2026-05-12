@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -20,7 +20,7 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent {
 
   isAdmin: boolean = this.auth.isAdmin();
   isUser: boolean = this.auth.isUser();
@@ -30,16 +30,6 @@ export class MainLayoutComponent implements OnInit {
     private auth: AuthService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {
-    this.isAdmin = this.auth.isAdmin();
-    this.isUser = this.auth.isUser();
-    this.isPortaria = this.auth.isPortaria();
-
-    console.log('isAdmin:', this.isAdmin);
-    console.log('isUser:', this.isUser);
-    console.log('isPortaria:', this.isPortaria);
-  }
 
   logout() {
     this.auth.logout();

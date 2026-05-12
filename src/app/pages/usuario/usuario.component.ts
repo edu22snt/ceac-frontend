@@ -79,7 +79,6 @@ export class UsuarioComponent implements OnInit {
 
   searchByKeyword(): void {
     this.pageIndex = 0;
-    console.log('Parâmetro de busca:', this.searchItem);
     this.service.searchByKeyword(this.searchItem, this.pageIndex, this.pageSize).subscribe({
       next: (res: HttpResponse<IUsuario[]>) => {
         this.onSuccess(res.body);
@@ -91,7 +90,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   protected onSuccess(data: any): void {
-    console.log('Dados recebidos:', data);
     this.dataSource.data = data.content;
     this.totalElements = data.totalElements;
   }
@@ -106,7 +104,6 @@ export class UsuarioComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px'
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.tratarExclusao(usuario);
@@ -126,7 +123,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   delete(usuario: IUsuario): void {
-
     this.service.delete(usuario.id).subscribe({
       next: () => {
         this.loadData();
