@@ -49,20 +49,15 @@ export class AuthService {
   }
 
   getDecodedToken(): any {
-
     const jwt = this.getToken();
-
     if (!jwt) {
       return null;
     }
-
     return jwtDecode(jwt);
   }
 
   getRoles(): string[] {
-
     const decoded = this.getDecodedToken();
-
     return decoded?.roles || [];
   }
 
