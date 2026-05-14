@@ -20,36 +20,36 @@ export class VeiculoService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/veiculo');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/veiculo`);
   }
   
   create(veiculo: IVeiculo): Observable<EntityResponseType> {
-    return this.http.post<IVeiculo>(this.domain + this.resourceUrl + '/save', veiculo, {observe: 'response'});
+    return this.http.post<IVeiculo>(this.resourceUrl + '/save', veiculo, {observe: 'response'});
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IVeiculo>(`${this.domain}${this.resourceUrl}/veiculo/${id}`, {observe: 'response'});
+    return this.http.get<IVeiculo>(`${this.resourceUrl}/veiculo/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {
-    return this.http.get<IVeiculo[]>(`${this.domain}${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IVeiculo[]>(`${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   findAllNotPage(): Observable<IVeiculo[]> {
-    return this.http.get<IVeiculo[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+    return this.http.get<IVeiculo[]>(`${this.resourceUrl}/findAllNotPage`);
   } 
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<IVeiculo[]>(
-      `${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
+      `${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
 
   update(veiculo: IVeiculo): Observable<EntityResponseType> {
-    return this.http.put<IVeiculo>(`${this.domain}${this.resourceUrl}/update`, veiculo, {observe: 'response'});
+    return this.http.put<IVeiculo>(`${this.resourceUrl}/update`, veiculo, {observe: 'response'});
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.domain}${this.resourceUrl}/delete/${id}`, {observe: 'response'});
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, {observe: 'response'});
   }
 }

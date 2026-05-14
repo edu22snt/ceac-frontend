@@ -20,36 +20,36 @@ export class MoradorService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/morador');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/morador`);
   }
 
   create(repasse: IMorador): Observable<EntityResponseType> {
-    return this.http.post<IMorador>(this.domain + this.resourceUrl + '/save', repasse, {observe: 'response'});
+    return this.http.post<IMorador>(this.resourceUrl + '/save', repasse, {observe: 'response'});
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IMorador>(`${this.domain}${this.resourceUrl}/repasse/${id}`, {observe: 'response'});
+    return this.http.get<IMorador>(`${this.resourceUrl}/repasse/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {
-    return this.http.get<IMorador[]>(`${this.domain}${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IMorador[]>(`${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   findAllNotPage(): Observable<IMorador[]> {
-    return this.http.get<IMorador[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+    return this.http.get<IMorador[]>(`${this.resourceUrl}/findAllNotPage`);
   }
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<IMorador[]>(
-      `${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
+      `${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
 
   update(repasse: IMorador): Observable<EntityResponseType> {
-    return this.http.put<IMorador>(`${this.domain}${this.resourceUrl}/update`, repasse, {observe: 'response'});
+    return this.http.put<IMorador>(`${this.resourceUrl}/update`, repasse, {observe: 'response'});
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.domain}${this.resourceUrl}/delete/${id}`, {observe: 'response'});
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, {observe: 'response'});
   }
 }

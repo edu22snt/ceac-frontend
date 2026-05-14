@@ -21,36 +21,36 @@ export class MudancaService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/mudanca');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/mudanca`);
   }
   
   create(mudanca: IMudanca): Observable<EntityResponseType> {
-    return this.http.post<IMudanca>(this.domain + this.resourceUrl + '/save', mudanca, {observe: 'response'});
+    return this.http.post<IMudanca>(this.resourceUrl + '/save', mudanca, {observe: 'response'});
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IMudanca>(`${this.domain}${this.resourceUrl}/findById/${id}`, {observe: 'response'});
+    return this.http.get<IMudanca>(`${this.resourceUrl}/findById/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {
-    return this.http.get<IMudanca[]>(`${this.domain}${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IMudanca[]>(`${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   findAllNotPage(): Observable<IMudanca[]> {
-    return this.http.get<IMudanca[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+    return this.http.get<IMudanca[]>(`${this.resourceUrl}/findAllNotPage`);
   }
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<IMudanca[]>(
-      `${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
+      `${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
 
   update(mudanca: IMudanca): Observable<EntityResponseType> {
-    return this.http.put<IMudanca>(`${this.domain}${this.resourceUrl}/update`, mudanca, {observe: 'response'});
+    return this.http.put<IMudanca>(`${this.resourceUrl}/update`, mudanca, {observe: 'response'});
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.domain}${this.resourceUrl}/delete/${id}`, {observe: 'response'});
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, {observe: 'response'});
   }
 }

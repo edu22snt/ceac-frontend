@@ -20,35 +20,35 @@ export class UsuarioService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/usuario');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/usuario`);
   }
 
   create(repasse: IUsuario): Observable<EntityResponseType> {
-    return this.http.post<IUsuario>(this.domain + this.resourceUrl + '/save', repasse, {observe: 'response'});
+    return this.http.post<IUsuario>(this.resourceUrl + '/save', repasse, {observe: 'response'});
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IUsuario>(`${this.domain}${this.resourceUrl}/findById/${id}`, {observe: 'response'});
+    return this.http.get<IUsuario>(`${this.resourceUrl}/findById/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {
-    return this.http.get<IUsuario[]>(`${this.domain}${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IUsuario[]>(`${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   findAllNotPage(): Observable<IUsuario[]> {
-    return this.http.get<IUsuario[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+    return this.http.get<IUsuario[]>(`${this.resourceUrl}/findAllNotPage`);
   }  
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
-    return this.http.get<IUsuario[]>(`${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
+    return this.http.get<IUsuario[]>(`${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
 
   update(repasse: IUsuario): Observable<EntityResponseType> {
-    return this.http.put<IUsuario>(`${this.domain}${this.resourceUrl}/update`,repasse,{observe: 'response'});
+    return this.http.put<IUsuario>(`${this.resourceUrl}/update`,repasse,{observe: 'response'});
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.domain}${this.resourceUrl}/delete/${id}`, {observe: 'response'});
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, {observe: 'response'});
   }
 }

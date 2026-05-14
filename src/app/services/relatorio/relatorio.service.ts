@@ -16,11 +16,11 @@ export class RelatorioService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/relatorio');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/relatorio`);
   }
 
   relatorioPrestacaoServico(param: string): void {
-    this.http.get(`${this.domain}${this.resourceUrl}/prestacaoServico?param=${param}`, {
+    this.http.get(`${this.resourceUrl}/prestacaoServico?param=${param}`, {
       responseType: 'blob'
     }).subscribe((blob: Blob) => {
 
@@ -30,7 +30,7 @@ export class RelatorioService {
   }
 
   relatorioBancorbras(param: string): void {
-    this.http.get(`${this.domain}${this.resourceUrl}/bancorbras?param=${param}`, {
+    this.http.get(`${this.resourceUrl}/bancorbras?param=${param}`, {
       responseType: 'blob'
     }).subscribe((blob: Blob) => {
 
@@ -40,7 +40,7 @@ export class RelatorioService {
   }
 
   relatorioHs(param: string): void {
-    this.http.get(`${this.domain}${this.resourceUrl}/hs?param=${param}`, {
+    this.http.get(`${this.resourceUrl}/hs?param=${param}`, {
       responseType: 'blob'
     }).subscribe((blob: Blob) => {
 
@@ -50,7 +50,7 @@ export class RelatorioService {
   }
 
   relatorioContratos(param: string): void {
-    this.http.get(`${this.domain}${this.resourceUrl}/contratos?param=${param}`, {
+    this.http.get(`${this.resourceUrl}/contratos?param=${param}`, {
       responseType: 'blob'
     }).subscribe((blob: Blob) => {
 
@@ -60,7 +60,7 @@ export class RelatorioService {
   }
 
   relatorioVendedores(param: string): void {
-    this.http.get(`${this.domain}${this.resourceUrl}/vendedores?param=${param}`, {
+    this.http.get(`${this.resourceUrl}/vendedores?param=${param}`, {
       responseType: 'blob'
     }).subscribe((blob: Blob) => {
 

@@ -20,41 +20,41 @@ export class VisitanteService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/visitante');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/visitante`);
   }
   
   create(visitante: IVisitante): Observable<EntityResponseType> {
-    return this.http.post<IVisitante>(this.domain + this.resourceUrl + '/save', visitante, {observe: 'response'});
+    return this.http.post<IVisitante>(this.resourceUrl + '/save', visitante, {observe: 'response'});
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IVisitante>(`${this.domain}${this.resourceUrl}/findById/${id}`, {observe: 'response'});
+    return this.http.get<IVisitante>(`${this.resourceUrl}/findById/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {
-    return this.http.get<IVisitante[]>(`${this.domain}${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IVisitante[]>(`${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   findAllNotPage(): Observable<IVisitante[]> {
-    return this.http.get<IVisitante[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+    return this.http.get<IVisitante[]>(`${this.resourceUrl}/findAllNotPage`);
   }
 
   recuperarListaVisitantesDiario(page: number = 0, size: number = 10) {
-    return this.http.get<IVisitante[]>(`${this.domain}${this.resourceUrl}/recuperarListaVisitantesDiario?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IVisitante[]>(`${this.resourceUrl}/recuperarListaVisitantesDiario?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<IVisitante[]>(
-      `${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
+      `${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
 
   update(visitante: IVisitante): Observable<EntityResponseType> {
-    return this.http.put<IVisitante>(`${this.domain}${this.resourceUrl}/update`, visitante, {observe: 'response'});
+    return this.http.put<IVisitante>(`${this.resourceUrl}/update`, visitante, {observe: 'response'});
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.domain}${this.resourceUrl}/delete/${id}`, {observe: 'response'});
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, {observe: 'response'});
   }
 }

@@ -20,38 +20,38 @@ export class ControleAcessoService {
     protected applicationConfigService: ApplicationConfigService
   ) {
     this.domain = environment.domain;
-    this.resourceUrl = this.applicationConfigService.getEndpointFor('/api/controleAcesso');
+    this.resourceUrl = this.applicationConfigService.getEndpointFor(`${this.domain}/api/controleAcesso`);
   }
 
   create(prestacao: IControleAcesso): Observable<EntityResponseType> {
-    return this.http.post<IControleAcesso>(this.domain + this.resourceUrl + '/save', prestacao, {observe: 'response'});
+    return this.http.post<IControleAcesso>(this.resourceUrl + '/save', prestacao, {observe: 'response'});
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IControleAcesso>(`${this.domain}${this.resourceUrl}/repasse/${id}`, {observe: 'response'});
+    return this.http.get<IControleAcesso>(`${this.resourceUrl}/repasse/${id}`, {observe: 'response'});
   }
 
   findAll(page: number = 0, size: number = 10) {
-    return this.http.get<IControleAcesso[]>(`${this.domain}${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
+    return this.http.get<IControleAcesso[]>(`${this.resourceUrl}/findAll?page=${page}&size=${size}`, { observe: 'response' }
     );
   }
 
   findAllNotPage(): Observable<IControleAcesso[]> {
-    return this.http.get<IControleAcesso[]>(`${this.domain}${this.resourceUrl}/findAllNotPage`);
+    return this.http.get<IControleAcesso[]>(`${this.resourceUrl}/findAllNotPage`);
   }
 
   searchByKeyword(param: string, page: number = 0, size: number = 10): Observable<EntityArrayResponseType> {
     return this.http.get<IControleAcesso[]>(
-      `${this.domain}${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
+      `${this.resourceUrl}/searchByKeyword?param=${encodeURIComponent(param)}&page=${page}&size=${size}`, { observe: 'response' });
   }
 
   update(prestacao: IControleAcesso): Observable<EntityResponseType> {
     return this.http.put<IControleAcesso>(
-      `${this.domain}${this.resourceUrl}/update`, prestacao, {observe: 'response'}
+      `${this.resourceUrl}/update`, prestacao, {observe: 'response'}
     );
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.domain}${this.resourceUrl}/delete/${id}`, {observe: 'response'});
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, {observe: 'response'});
   }
 }
